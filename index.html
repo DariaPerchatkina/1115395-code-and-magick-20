@@ -181,17 +181,17 @@
 
   <script>
     "use strict"
-    
+
     var fireballSize = 22;
     var wizardWidth = 70;
     var wizardSpeed = 3;
-    var WIZARD_HEIGHT = 1.337;
+    var COEF_HEIGHT = 1.337;
     var FIREBALL_SPEED_LEFT = 2;
     var FIREBALL_SPEED_RIGHT = 5;
 
 
     function getWizardHeight() {
-      return WIZARD_HEIGHT * wizardWidth;
+      return COEF_HEIGHT * wizardWidth;
     };
 
     function getFireballSpeed(isWindFromLeft) {

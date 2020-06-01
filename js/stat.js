@@ -65,15 +65,17 @@ var renderDiagramRects = function (ctx, times, players) {
   }
 };
 
-var gamePlayers = function (ctx, times, maxTime, players, i) {
-  getMaxElement(times);
-  ctx.fillStyle = '#000';
-  ctx.fillText(Math.floor(times[i]), CLOUD_X + FONT_GAP + (BAR_INDENT * i), ((CLOUD_Y - BAR_HEIGHT) * times[i] / maxTime) + TEXT_GAP_TOP + BAR_HEIGHT - GAP);
-  ctx.fillText(players[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_BOTTOM);
+var renderPlayersTimes = function (ctx, times, players) {
+  var maxTime = getMaxElement(times);
+  for (var i = 0; i < players.length; i++) {
+    ctx.fillStyle = '#000';
+    ctx.fillText(Math.floor(times[i]), CLOUD_X + FONT_GAP + (BAR_INDENT * i), ((CLOUD_Y - BAR_HEIGHT) * times[i] / maxTime) + TEXT_GAP_TOP + BAR_HEIGHT - GAP);
+    ctx.fillText(players[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_BOTTOM);
+  }
 };
 
-var victoryMessages = function (ctx, times) {
-  getMaxElement(times);
+var renderVictoryMessages = function (ctx) {
+  ctx.fillStyle = '#000';
   ctx.font = FONT_STYLE;
   ctx.fillText(TEXT_ONE, CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 1));
   ctx.fillText(TEXT_TWO, CLOUD_X + TEXT_GAP_LEFT, CLOUD_Y + TEXT_HEIGHT + (GAP * 3));
@@ -82,6 +84,6 @@ var victoryMessages = function (ctx, times) {
 window.renderStatistics = function (ctx, players, times) {
   drawCloud(ctx);
   renderDiagramRects(ctx, times, players);
-  gamePlayers(ctx, times, players);
-  victoryMessages(ctx, times);
+  renderPlayersTimes(ctx, times, players);
+  renderVictoryMessages(ctx);
 };

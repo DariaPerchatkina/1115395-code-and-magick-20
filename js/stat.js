@@ -67,8 +67,8 @@ var renderDiagramRects = function (ctx, times, players) {
 
 var renderPlayersTimes = function (ctx, times, players) {
   var maxTime = getMaxElement(times);
+  ctx.fillStyle = '#000';
   for (var i = 0; i < players.length; i++) {
-    ctx.fillStyle = '#000';
     ctx.fillText(Math.floor(times[i]), CLOUD_X + FONT_GAP + (BAR_INDENT * i), ((CLOUD_Y - BAR_HEIGHT) * times[i] / maxTime) + TEXT_GAP_TOP + BAR_HEIGHT - GAP);
     ctx.fillText(players[i], CLOUD_X + FONT_GAP + (BAR_INDENT * i), TEXT_GAP_BOTTOM);
   }

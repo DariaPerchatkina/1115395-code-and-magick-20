@@ -50,9 +50,14 @@ var fillWizard = function (wizardObject) { // создаем функцию, к�
     .querySelector('.setup-similar-item');
   var wizardElement = similarWizardTemplate.cloneNode(true); // делаем дубликат узла template
 
-  wizardElement.querySelector('.setup-similar-label').textContent = wizardObject.name; // находим в ДОМ div c классом .setup-similar-label и задаем ему текстовое содержимое
-  wizardElement.querySelector('.wizard-coat').style.fill = wizardObject.coatColor; // по аналогии с цветами
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizardObject.eyesColor;
+  var wizardNameElement = wizardElement.querySelector('.setup-similar-label');
+  wizardNameElement.textContent = wizardObject.name;
+
+  var wizardCoatElement = wizardElement.querySelector('.wizard-coat');
+  wizardCoatElement.style.fill = wizardObject.coatColor;
+
+  var wizardEyesElement = wizardElement.querySelector('.wizard-eyes');
+  wizardEyesElement.style.fill = wizardObject.eyesColor;
 
   return wizardElement; // возвращаем полученный склонированный элемент с новым содержимым
 };
@@ -64,7 +69,9 @@ var renderWizards = function (wizardsArray) {
     fragment.appendChild(fillWizard(wizardsArray[i])); // добавляет созданного волшебника во фрагмент
   }
   similarListElement.appendChild(fragment); // добавляет фрагмент в разметку
-  document.querySelector('.setup-similar').classList.remove('hidden'); // отключает класс hidden у окна,отображающего сгененрированнвх волшебников в модалке
+
+  var showWizardsList = document.querySelector('.setup-similar'); // находим список с сгенерированными волшебниками
+  showWizardsList.classList.remove('hidden'); // показываем список в модалке
 };
 
 renderWizards(wizards);

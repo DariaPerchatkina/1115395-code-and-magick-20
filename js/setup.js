@@ -51,12 +51,11 @@ var fillWizard = function (wizardObject) { // создаем функцию, к�
   var wizardElement = similarWizardTemplate.cloneNode(true); // делаем дубликат узла template
 
   var wizardNameElement = wizardElement.querySelector('.setup-similar-label');
-  wizardNameElement.textContent = wizardObject.name;
-
   var wizardCoatElement = wizardElement.querySelector('.wizard-coat');
-  wizardCoatElement.style.fill = wizardObject.coatColor;
-
   var wizardEyesElement = wizardElement.querySelector('.wizard-eyes');
+
+  wizardNameElement.textContent = wizardObject.name;
+  wizardCoatElement.style.fill = wizardObject.coatColor;
   wizardEyesElement.style.fill = wizardObject.eyesColor;
 
   return wizardElement; // возвращаем полученный склонированный элемент с новым содержимым

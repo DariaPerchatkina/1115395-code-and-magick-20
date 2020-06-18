@@ -86,6 +86,7 @@ var renderWizards = function (wizardsArray) {
 renderWizards(wizards);
 showUserDialog();
 
+// функция выполнит закрытие попапа по событию- нажатие кнопки escape
 var onPopupEscPress = function (evt) {
   if (evt.key === 'Escape') {
     evt.preventDefault();
@@ -93,39 +94,45 @@ var onPopupEscPress = function (evt) {
   }
 };
 
+// открытие попапа по событию нажания esc
 var openPopup = function () {
   setup.classList.remove('hidden');
 
   document.addEventListener('keydown', onPopupEscPress);
 };
 
+// закрытие попапа по событию нажатия esc
 var closePopup = function () {
   setup.classList.add('hidden');
 
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
+// слушает событие клик, открывающее попап
 setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
+// слушает событие нажатие клавиши esc и открывает попап
 setupOpen.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
     openPopup();
   }
 });
 
+// слушает событие клик и закрывет окно(добавляет класс hidden)
 setupClose.addEventListener('click', function () {
   closePopup();
 });
 
+// слушает событие нажатие на enter и закрывает окно(добавляет класс hidden)
 setupClose.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
     closePopup();
   }
 });
 
-
+// валидация - проверка на заполненеие строки
 userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.valueMissing) {
     userNameInput.setCustomValidity('Обязательное поле');
@@ -134,6 +141,7 @@ userNameInput.addEventListener('invalid', function () {
   }
 });
 
+// проверка на длину имени
 userNameInput.addEventListener('input', function () {
   var valueLength = userNameInput.value.length;
 
@@ -146,26 +154,22 @@ userNameInput.addEventListener('input', function () {
   }
 });
 
-// изменение цвета мантии\
-
+// изменение цвета мантии
 wizardCoat.addEventListener('click', function () {
   var playerWizardCoatColor = getRandomValueFromArr(COAT_COLOR);
   wizardCoat.style.fill = playerWizardCoatColor;
   setup.querySelector('.setup-player').querySelector('input[name="coat-color"]').value = playerWizardCoatColor;
-}());
+});
 
 
 // изменение цвета глаз
-
 wizardEyes.addEventListener('click', function () {
   var playerWizardEyesColor = getRandomValueFromArr(EYES_COLOR);
   wizardEyes.style.fill = playerWizardEyesColor;
   setup.querySelector('.setup-player').querySelector('input[name="eyes-color"]').value = playerWizardEyesColor;
-}());
+});
 
 // изменение цвета фверболаа
-
-
 fireballSetup.addEventListener('click', function () {
   var playerFireballColor = getRandomValueFromArr(fireballColorArr);
   fireballSetup.style.background = playerFireballColor;

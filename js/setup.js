@@ -5,7 +5,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_LASTNAMES = [' да Марья', ' Верон', ' Мирабелла', ' Вальц', ' Онопко', ' Топольницкая', ' Нионго', ' Ирвинг'];
 var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
-var fireballColorArr = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+var FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var WIZARD_COUNT = 4;
 var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
@@ -16,7 +16,9 @@ var userNameInput = document.querySelector('.setup-user-name');
 var wizardCoat = document.querySelector('.wizard-coat');
 var wizardEyes = document.querySelector('.wizard-eyes');
 var fireballSetup = setup.querySelector('.setup-fireball-wrap');
-
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
+var REQUIRD_FIELD = 'Обязательное поле';
 var showUserDialog = function () {
   var userDialog = document.querySelector('.setup'); // находим окно настройки пользователя
   userDialog.classList.remove('hidden'); // и показыаем окно убирая класс hidden
@@ -88,7 +90,7 @@ showUserDialog();
 
 // функция выполнит закрытие попапа по событию- нажатие кнопки escape
 var onPopupEscPress = function (evt) {
-  if (evt.key === 'Escape') {
+  if (evt.key === ESC_KEY && userNameInput !== document.activeElement) {
     evt.preventDefault();
     closePopup();
   }
@@ -115,7 +117,7 @@ setupOpen.addEventListener('click', function () {
 
 // слушает событие нажатие клавиши esc и открывает попап
 setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  if (evt.key === ENTER_KEY) {
     openPopup();
   }
 });
@@ -127,7 +129,7 @@ setupClose.addEventListener('click', function () {
 
 // слушает событие нажатие на enter и закрывает окно(добавляет класс hidden)
 setupClose.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  if (evt.key === ENTER_KEY) {
     closePopup();
   }
 });
@@ -135,7 +137,7 @@ setupClose.addEventListener('keydown', function (evt) {
 // валидация - проверка на заполненеие строки
 userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.valueMissing) {
-    userNameInput.setCustomValidity('Обязательное поле');
+    userNameInput.setCustomValidity(REQUIRD_FIELD);
   } else {
     userNameInput.setCustomValidity('');
   }
@@ -171,7 +173,7 @@ wizardEyes.addEventListener('click', function () {
 
 // изменение цвета фверболаа
 fireballSetup.addEventListener('click', function () {
-  var playerFireballColor = getRandomValueFromArr(fireballColorArr);
+  var playerFireballColor = getRandomValueFromArr(FIREBALL_COLORS);
   fireballSetup.style.background = playerFireballColor;
   fireballSetup.querySelector('input').value = playerFireballColor;
 });

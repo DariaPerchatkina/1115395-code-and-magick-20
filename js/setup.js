@@ -98,10 +98,12 @@ var onPopupEscPress = function (evt) {
 
 userNameInput.addEventListener('focus', function () {
   document.removeEventListener('keydown', onPopupEscPress);
+  // console.log('hi');
 });
 
 userNameInput.addEventListener('blur', function () {
   document.addEventListener('keydown', onPopupEscPress);
+  // console.log('bye');
 });
 
 // открытие попапа по событию нажания esc

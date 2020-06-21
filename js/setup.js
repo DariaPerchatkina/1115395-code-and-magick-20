@@ -90,23 +90,29 @@ showUserDialog();
 
 // функция выполнит закрытие попапа по событию- нажатие кнопки escape
 var onPopupEscPress = function (evt) {
-  if (evt.key === ESC_KEY && userNameInput !== document.activeElement) {
+  if (evt.key === ESC_KEY) {
     evt.preventDefault();
     closePopup();
   }
 };
 
+userNameInput.addEventListener('focus', function () {
+  document.removeEventListener('keydown', onPopupEscPress);
+});
+
+userNameInput.addEventListener('blur', function () {
+  document.addEventListener('keydown', onPopupEscPress);
+});
+
 // открытие попапа по событию нажания esc
 var openPopup = function () {
   setup.classList.remove('hidden');
-
   document.addEventListener('keydown', onPopupEscPress);
 };
 
 // закрытие попапа по событию нажатия esc
 var closePopup = function () {
   setup.classList.add('hidden');
-
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
